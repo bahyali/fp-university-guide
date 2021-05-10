@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ page_title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- CSS Reset -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+
+    <!-- Milligram CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+
+    <script src="https://kit.fontawesome.com/8e29245b2e.js" crossorigin="anonymous"></script>
+
+    <!-- Style Guide CSS -->
+    {% assets "sg_scss_all" %}
+        <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}">
+    {% endassets %}
+</head>
+<body class="{{ body_class }}">
+{% block nav %}{% endblock %}
+
+<main class="main">
+    {% block body %}{% endblock %}
+</main>
+</body>
+</html>

@@ -1,0 +1,13 @@
+.btn {
+  display: block;
+  position: relative;
+  color: $secondary-color;
+  background: #0F6B2E;
+  padding: 7px 10px;
+
+  & > .decorator-right {
+    position: absolute;
+    right: 10px;
+    top: 7px;
+  }
+}

@@ -1,0 +1,52 @@
+.page-home {
+
+
+  .homepage-header {
+    @extend .padded;
+    background: $primary-color;
+    color: $secondary-color;
+
+    &__hero {
+      margin-bottom: 20px;
+
+      & > h4 {
+        margin-top: 1em;
+        margin-bottom: 15px;
+      }
+    }
+
+    &__search-box {
+      margin-bottom: 20px;
+    }
+
+    &__personality-test {
+
+    }
+  }
+
+  & .featured-universities {
+    margin: 15px 0;
+    padding-inline-start: 15px;
+  }
+}
+
+.vertical-slider {
+  display: flex;
+  overflow-y: auto;
+  flex-direction: row;
+
+  &__container {
+    display: flex;
+    flex-wrap: nowrap;
+    max-height: 100%;
+  }
+
+  & .slider-item {
+    width: 33vw;
+    flex: 0 0 auto;
+    align-self: stretch;
+    order: 0;
+    margin-inline-end: 15px;
+  }
+
+}

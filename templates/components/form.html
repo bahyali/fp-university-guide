@@ -1,6 +1,6 @@
-{% macro search_box(placeholder="What are you looking for?", text=None) %}
+{% macro search_box(placeholder="What are you looking for?", text="") %}
     <div class="search-box">
-        <input placeholder="{{ placeholder }}" class="search-box__input" type="text">
+        <input placeholder="{{ placeholder }}" value="{{ text }}" class="search-box__input" type="text">
         <div class="search-box__search-btn">
             <i class="fas fa-search"></i>
         </div>
