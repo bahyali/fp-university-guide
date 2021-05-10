@@ -1,4 +1,4 @@
-{% macro university_card(title="Untitled", image_path="") %}
+{% macro university_card(title="Untitled", image_path="https://source.unsplash.com/random/500x500") %}
     <div class="card-university">
         {%- if image_path -%}
             <div class="card-university__image">
@@ -8,6 +8,30 @@
         <div class="card-university__content">
             <div class="card-university__title">
                 {{ title }}
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro news_item(title="Lorem impsum title",
+                   subtitle= "Lorem Inpsum Subtitle",
+                   description="Lorem Impsum Description",
+                   image_path="https://source.unsplash.com/random") %}
+    <div class="card-news_item">
+        {%- if image_path -%}
+            <div class="card-news_item__image">
+                <img src="{{ image_path }}">
+            </div>
+        {%- endif -%}
+        <div class="card-news_item__content">
+            <div class="card-news_item__title">
+                {{ title }}
+            </div>
+            <div class="card-news_item__subtitle">
+                {{ subtitle }}
+            </div>
+            <div class="card-news_item__description">
+                {{ description }}
             </div>
         </div>
     </div>

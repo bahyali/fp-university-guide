@@ -6,9 +6,18 @@
   color: $secondary-color;
   padding: 15px;
 
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @media (min-width: 50rem) {
+      max-width: 960px;
+      padding: 0 15px;
+      margin: 0 auto;
+    }
+  }
+
 
   &__back-btn {
     & > i {

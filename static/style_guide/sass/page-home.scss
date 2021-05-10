@@ -1,10 +1,16 @@
 .page-home {
-
-
   .homepage-header {
     @extend .padded;
     background: $primary-color;
     color: $secondary-color;
+
+    &__container {
+      @media (min-width: 50rem) {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+    }
 
     &__hero {
       margin-bottom: 20px;
@@ -20,33 +26,53 @@
     }
 
     &__personality-test {
-
+      @media (min-width: 50rem) {
+        width: 400px;
+      }
     }
   }
 
-  & .featured-universities {
+  .featured-universities {
     margin: 15px 0;
     padding-inline-start: 15px;
+
+    & .slider-item {
+      width: 33vw;
+      @media (min-width: 30rem) {
+        width: 5rem;
+      }
+    }
+  }
+
+  .news {
+    &__header {
+      margin-bottom: 15px;
+    }
+
+    &__items {
+      & > * {
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  .blog-posts {
+    margin-bottom: 15px;
+
+    &__header {
+      margin-bottom: 15px;
+    }
+
+    & .slider-item {
+      width: 80vw;
+      @media (min-width: 30rem) {
+        width: 10rem;
+      }
+    }
+
+    &__posts {
+      padding-inline-start: 15px;
+    }
   }
 }
 
-.vertical-slider {
-  display: flex;
-  overflow-y: auto;
-  flex-direction: row;
-
-  &__container {
-    display: flex;
-    flex-wrap: nowrap;
-    max-height: 100%;
-  }
-
-  & .slider-item {
-    width: 33vw;
-    flex: 0 0 auto;
-    align-self: stretch;
-    order: 0;
-    margin-inline-end: 15px;
-  }
-
-}

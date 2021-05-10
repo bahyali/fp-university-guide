@@ -1,0 +1,8 @@
+{% macro footer(logo, text="All rights are reserved to The University Guide.") %}
+    <footer class="footer">
+        {% if logo %}
+            <img class="footer__logo" src="{{ logo }}">
+        {% endif %}
+        <span>{{ text }}</span>
+    </footer>
+{% endmacro %}

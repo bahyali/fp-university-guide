@@ -1,12 +1,16 @@
+@mixin card-image($max-height) {
+  width: 100%;
+  display: block;
+  max-height: $max-height;
+  @extend .cover
+}
+
 .card-university {
   background: $secondary-color;
 
   &__image {
     & > img {
-      width: 100%;
-      display: block;
-      max-height: 200px;
-      @extend .cover
+      @include card-image(200px)
     }
   }
 
@@ -17,5 +21,33 @@
   &__title {
     @extend .medium;
     font-size: 0.8em;
+  }
+}
+
+.card-news_item {
+  background: $secondary-color;
+
+  &__image {
+    & > img {
+      @include card-image(200px)
+    }
+  }
+
+  &__content {
+    padding: 10px 15px;
+  }
+
+  &__title {
+    @extend .medium;
+    font-size: 1em;
+  }
+
+  &__subtitle {
+    font-size: 0.9em;
+  }
+
+  &__description {
+    font-size: 0.9em;
+    color: #797878;
   }
 }

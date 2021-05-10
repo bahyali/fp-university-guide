@@ -1,0 +1,32 @@
+.vertical-slider {
+  display: flex;
+  overflow-y: auto;
+  flex-direction: row;
+  justify-content: space-between;
+
+  &__container {
+    display: flex;
+    flex-wrap: nowrap;
+    max-height: 100%;
+
+    @media (min-width: 30rem) {
+      max-width: 960px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      flex-grow: 1;
+      width: 100%;
+      padding: 0 5px;
+    }
+  }
+
+  & .slider-item {
+    flex: 0 0 auto;
+    align-self: stretch;
+    order: 0;
+    margin-inline-end: 15px;
+
+    @media (min-width: 30rem) {
+      flex: 1 1 auto;
+    }
+  }
+}

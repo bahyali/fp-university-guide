@@ -1,0 +1,12 @@
+.footer {
+  background: $primary-color;
+  display: flex;
+  align-items: center;
+  font-size: 0.8em;
+  color: $secondary-color;
+  padding: 15px;
+  &__logo {
+    height: 3em;
+    margin-inline-end: 15px;
+  }
+}
