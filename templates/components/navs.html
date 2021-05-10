@@ -1,0 +1,19 @@
+{% macro navbar(show_logo=True, color=None) %}
+    <div class="navbar" style="{{ 'background-color:%s' % color if color is not none }}">
+        {% if show_logo %}
+            <div class="navbar__logo">
+                <img src="{{ url_for('static', filename='images/logo.png') }}">
+            </div>
+        {% else %}
+            <div class="navbar__back-btn navbar__back-btn--closed">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+        {% endif %}
+        <div class="navbar__menu-btn navbar__menu-btn--closed">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="navbar__menu-btn navbar__menu-btn--open hidden">
+            <i class="fas fa-times"></i>
+        </div>
+    </div>
+{% endmacro %}

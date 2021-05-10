@@ -1,0 +1,21 @@
+.card-university {
+  background: $secondary-color;
+
+  &__image {
+    & > img {
+      width: 100%;
+      display: block;
+      max-height: 200px;
+      @extend .cover
+    }
+  }
+
+  &__content {
+    padding: 10px 15px;
+  }
+
+  &__title {
+    @extend .medium;
+    font-size: 0.8em;
+  }
+}

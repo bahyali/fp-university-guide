@@ -1,0 +1,28 @@
+.navbar {
+  $self: &;
+
+  height: 70px;
+  background: $primary-color;
+  color: $secondary-color;
+  padding: 15px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__back-btn {
+    & > i {
+      font-size: 1.7em;
+    }
+  }
+
+  &__logo {
+    width: 48px;
+  }
+
+  &__menu-btn {
+    & > i {
+      font-size: 1.8em;
+    }
+  }
+}

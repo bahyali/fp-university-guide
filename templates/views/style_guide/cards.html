@@ -1,0 +1,19 @@
+{% extends "views/style_guide/base.html" %}
+{% from 'components/cards.html' import university_card %}
+{% set page_title = "Cards" %}
+
+{% block body %}
+    <div class="style-container">
+        <div class="content">
+            <h1>Cards</h1>
+            <div class="row">
+                <div class="column column-25">
+                    {{ university_card(title="LOL", image_path=url_for('static', filename="images/hello.jpg")) }}
+                </div>
+                <div class="column column-50">
+                    {{ university_card(title="LOL", image_path=url_for('static', filename="images/hello.jpg")) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

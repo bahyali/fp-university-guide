@@ -1,0 +1,19 @@
+{% from "components/cards.html" import university_card %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    {% assets "scss_all" %}
+        <link rel=stylesheet type=text/css href="{{ ASSET_URL }}">
+    {% endassets %}
+</head>
+<body>
+<div>
+    {{ university_card(title="LOL", image_path=url_for('static', filename='images/hello.jpg')) }}
+</div>
+
+
+</body>
+</html>

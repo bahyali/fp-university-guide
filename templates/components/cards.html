@@ -1,0 +1,14 @@
+{% macro university_card(title="Untitled", image_path="") %}
+    <div class="card-university">
+        {%- if image_path -%}
+            <div class="card-university__image">
+                <img src="{{ image_path }}">
+            </div>
+        {%- endif -%}
+        <div class="card-university__content">
+            <div class="card-university__title">
+                {{ title }}
+            </div>
+        </div>
+    </div>
+{% endmacro %}

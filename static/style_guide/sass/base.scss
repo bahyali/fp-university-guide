@@ -1,0 +1,41 @@
+$primary-color: #20BF55;
+$secondary-color: #FCF7F8;
+$text-color: #484848;
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap');
+
+body {
+  font-family: 'Rubik', sans-serif;
+  color: $text-color;
+}
+
+img {
+  display: block;
+}
+
+@import "navs";
+@import "cards";
+@import "form";
+
+// Helpers
+.medium {
+  font-weight: 500;
+}
+
+.cover {
+  object-fit: cover;
+}
+
+.hidden {
+  display: none;
+}
+
+input[type='color'], input[type='date'], input[type='datetime'], input[type='datetime-local'], input[type='email'], input[type='month'], input[type='number'], input[type='password'], input[type='search'], input[type='tel'], input[type='text'], input[type='url'], input[type='week'], input:not([type]), textarea, select {
+  border-radius: 0;
+  color: $text-color;
+
+  &::placeholder {
+    font-weight: normal;
+    color: #797878;
+  }
+}
