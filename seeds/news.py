@@ -1,7 +1,7 @@
 from flask_seeder import Seeder, Faker
 from faker import Faker as FakeGenerator
-from app.models.news import NewsItem
 from app.utilities.seeding import FakerIntegration as Generator
+from app.models.news import NewsItem
 
 fake = FakeGenerator()
 
@@ -14,14 +14,14 @@ class NewsSeeder(Seeder):
         fake_blog_items = Faker(
             cls=NewsItem,
             init={
-                "title": Generator(lambda: '%s University' % fake.sentence()),
+                "title": Generator(lambda: fake.sentence()),
                 "excerpt": Generator(lambda: fake.paragraph()),
                 "content": Generator(lambda: fake.text()),
-                "image": Generator(lambda: fake.image_url()),
+                "image": Generator(lambda: fake.image_url(500, 500).replace('lorempixel.com', 'loremflickr.com')),
             }
         )
 
         # Create 5 users
         for blog_item in fake_blog_items.create(5):
-            print("Adding Blog Item: %s" % blog_item)
+            print("Adding News Item: %s" % blog_item)
             self.db.session.add(blog_item)

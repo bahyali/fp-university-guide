@@ -1,7 +1,12 @@
 import random
 
-from flask_seeder import Seeder, Faker, generator
+from flask_seeder import Seeder, Faker
 import app.models.university as model
+
+from faker import Faker as FakeGenerator
+from app.utilities.seeding import FakerIntegration as Generator
+
+fake = FakeGenerator()
 
 
 class UniversitySeeder(Seeder):
@@ -12,53 +17,54 @@ class UniversitySeeder(Seeder):
         university_faker = Faker(
             cls=model.University,
             init={
-                "name": generator.Name(),
-                "type": generator.String('(Public University|Private University)'),
-                "about": generator.String('abc[5-9]{4}\c[xyz]'),
-                "location": generator.Name(),
-                "logo": "https://source.unsplash.com/random/200x200",
+                "name": Generator(lambda: '%s University' % fake.company()),
+                "type": Generator(lambda: random.choice(['Public University', 'Private University'])),
+                "about": Generator(lambda: fake.paragraph()),
+                "location": Generator(lambda: '%s, %s' % (fake.country(), fake.city())),
+                "logo": Generator(lambda: fake.image_url(200, 200).replace('lorempixel.com', 'loremflickr.com')),
             }
         )
 
         program_faker = Faker(
             cls=model.Program,
             init={
-                "name": generator.Name(),
-                "type": generator.String('(Undergraduate|Postgraduate)'),
-                "about": generator.String('abc[5-9]{4}\c[xyz]')
+                "name": Generator(lambda: '%s Program' % fake.company()),
+                "type": Generator(lambda: random.choice(['Undergraduate', 'Postgraduate'])),
+                "about": Generator(lambda: fake.paragraph())
             }
         )
 
         scholarship_faker = Faker(
             cls=model.Scholarship,
             init={
-                "name": generator.Name(),
-                "type": generator.String('(Undergraduate|Postgraduate)'),
-                "about": generator.String('abc[5-9]{4}\c[xyz]')
+                "name": Generator(lambda: '%s Scholarship' % fake.company()),
+                "type": Generator(lambda: random.choice(['Undergraduate', 'Postgraduate'])),
+                "about": Generator(lambda: fake.paragraph())
             }
         )
 
         campus_faker = Faker(
             cls=model.Campus,
             init={
-                "name": generator.Name(),
-                "location": generator.String('abc[5-9]{4}\c[xyz]')
+                "name": Generator(lambda: '%s Campus' % fake.city()),
+                "location": Generator(lambda: '%s, %s' % (fake.country(), fake.city())),
+                "address": Generator(lambda: fake.address()),
             }
         )
 
         facility_faker = Faker(
             cls=model.Facility,
             init={
-                "name": generator.Name(),
-                "image": "https://source.unsplash.com/random/50x50",
+                "name": Generator(lambda: fake.word()),
+                "image": Generator(lambda: fake.image_url(50, 50).replace('lorempixel.com', 'loremflickr.com')),
             }
         )
 
         contact_info_faker = Faker(
             cls=model.ContactInfo,
             init={
-                "method": generator.String('(facebook|twitter|phone|instagram)'),
-                "value": generator.String('abc[5-9]{4}\c[xyz]')
+                "method": Generator(lambda: random.choice(['facebook', 'twitter', 'phone', 'instagram'])),
+                "value": Generator(lambda: fake.url())
             }
         )
 
@@ -78,5 +84,5 @@ class UniversitySeeder(Seeder):
             for contact_info in contact_info_faker.create(random.randint(1, 5)):
                 uni.contact_info.append(contact_info)
 
-            print("Adding uni: %s" % uni)
+            print("Adding University: %s" % uni)
             self.db.session.add(uni)
