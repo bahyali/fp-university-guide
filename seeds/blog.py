@@ -17,7 +17,7 @@ class BlogSeeder(Seeder):
                 "title": Generator(lambda: '%s University' % fake.sentence()),
                 "excerpt": Generator(lambda: fake.paragraph()),
                 "content": Generator(lambda: fake.text()),
-                "image": Generator(lambda: fake.image_url()),
+                "image": Generator(lambda: fake.image_url(300, 300).replace('lorempixel.com', 'loremflickr.com')),
             }
         )
 
