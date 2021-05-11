@@ -45,12 +45,12 @@ def hello_world():
 
 @app.route('/login')
 def login():
-    return render_template('%s/hello.html' % VIEWS_DIR)
+    return render_template('%s/login.html' % VIEWS_DIR)
 
 
 @app.route('/signup')
 def signup():
-    return render_template('%s/hello.html' % VIEWS_DIR)
+    return render_template('%s/signup.html' % VIEWS_DIR)
 
 
 @app.route('/style_guide')
@@ -60,25 +60,34 @@ def style_guide():
 
 @app.route('/style_guide/<path:subpath>')
 def style_guide_subpath(subpath):
-    # show the subpath after /path/
     return render_template('%s/%s.html' % (STYLEGUIDE_DIR, escape(subpath)))
+
+
+@app.route('/blog')
+def show_blog():
+    return 'Blog'
 
 
 @app.route('/post/<int:post_id>')
 def show_post(post_id):
-    # show the post with the given id, the id is an integer
     return 'Post %d' % post_id
+
+
+@app.route('/university')
+def show_universities():
+    return 'University'
 
 
 @app.route('/university/<int:uni_id>')
 def show_university(uni_id):
-    # show the post with the given id, the id is an integer
     return 'University %d' % uni_id
+
+
+@app.route('/program')
+def show_programs():
+    return 'Programs'
 
 
 @app.route('/program/<int:program_id>')
 def show_program(program_id):
-    # show the post with the given id, the id is an integer
     return 'Program %d' % program_id
-
-
