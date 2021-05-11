@@ -4,6 +4,7 @@ from markupsafe import escape
 from flask_login import login_user, login_required, logout_user, current_user
 from app import login_manager, assets
 from app.models.user import User
+import app.models.university
 from app.controllers.auth import SignupController, LoginController, ValidationException
 
 app = Blueprint('app', __name__)
@@ -58,7 +59,7 @@ def authenticate():
 
     except ValidationException as e:
         flash(str(e))
-        return redirect(url_for('app.login'))  # if the user doesn't exist or password is wrong, reload the page
+        return redirect(url_for('app.login'))
 
 
 @app.route('/logout')
@@ -92,6 +93,11 @@ def register():
     flash('You are now registered, please login!')
 
     return redirect(url_for('app.login'))
+
+
+@app.route('/contact-us')
+def show_contact():
+    return 'Contact us'
 
 
 @app.route('/style_guide')
@@ -142,3 +148,4 @@ def show_programs():
 @app.route('/program/<int:program_id>')
 def show_program(program_id):
     return 'Program %d' % program_id
+

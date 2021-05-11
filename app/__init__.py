@@ -1,6 +1,8 @@
 import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+
 from flask_login import LoginManager
 from flask_assets import Environment, Bundle
 from dotenv import load_dotenv
@@ -9,6 +11,7 @@ load_dotenv()  # take environment variables from .env.
 
 # init SQLAlchemy so we can use it later in our models
 db = SQLAlchemy()
+migrate = Migrate()
 login_manager = LoginManager()
 assets = Environment()
 
@@ -22,7 +25,7 @@ def create_app():
     app.config['SECRET_KEY'] = 'secret-key-goes-here'
 
     db.init_app(app)
-
+    migrate.init_app(app, db)
     # Authenticator
     login_manager.login_view = 'app.login'
     login_manager.init_app(app)
