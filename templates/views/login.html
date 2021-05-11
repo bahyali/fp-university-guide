@@ -1,10 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "layouts/base.html" %}
+{% from 'components/navs.html' import navbar %}
+{% from 'components/containers.html' import box %}
+{% from 'components/form.html' import input %}
+{% from 'components/buttons.html' import button %}
+{% from 'components/footer.html' import footer %}
 
-</body>
-</html>
+{% set page_title = "Login" %}
+{% set body_class = "page-login auth" %}
+
+{% block nav %}
+    {{ navbar(show_logo=True) }}
+{% endblock %}
+
+{% block body %}
+    <div class="auth__header container">
+        <div class="auth__header__logo">
+            <img src="{{ url_for('static', filename="images/logo-round.png") }}" alt="University Guide Logo">
+        </div>
+        <h4>Login</h4>
+    </div>
+    <div class="container">
+        {% call box(class="auth__box") %}
+            <form class="auth__form" method="post">
+                {{ input(placeholder="Username") }}
+                {{ input(placeholder="Password", type="password") }}
+                {{ button(text="Login", class="btn full-width", type="submit") }}
+            </form>
+        {% endcall %}
+        <div class="auth__bottom-note">
+            Don't have an account? <a href="/signup">Create one</a>
+        </div>
+    </div>
+{% endblock %}

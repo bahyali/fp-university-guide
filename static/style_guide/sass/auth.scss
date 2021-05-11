@@ -1,0 +1,32 @@
+.auth {
+  padding-bottom: 100px;
+
+  &__header {
+    margin-top: 20px;
+    text-align: center;
+
+    &__logo {
+      display: inline-block;
+    }
+
+    & h4 {
+      margin-top: 20px;
+      margin-bottom: 0;
+    }
+  }
+
+  &__box {
+    margin: 38px auto;
+    max-width: 500px;
+  }
+
+  &__form {
+    .input {
+      margin-bottom: 15px;
+    }
+  }
+
+  &__bottom-note {
+    text-align: center;
+  }
+}

@@ -1,4 +1,14 @@
-{% macro navbar(show_logo=True, color=None) %}
+{% macro navbar(menu_items=[
+                            {'title':'Home', 'link':'/'},
+                            {'title':'Search', 'link':'/search'},
+                            {'title':'Scholarships', 'link':'/scholarships'},
+                            {'title':'Universities', 'link':'/universities'},
+                            {'title':'Personality Test', 'link':'/quiz'},
+                            {'title':'Blog', 'link':'/blog'},
+                            {'title':'Contact us', 'link':'/contact-us'},
+                            {'title':'Login', 'link':'/login'},
+
+], show_logo=True, color=None) %}
     <div class="navbar" style="{{ 'background-color:%s' % color if color is not none }}">
         <div class="navbar__container">
             {% if show_logo %}
@@ -10,6 +20,11 @@
                     <i class="fas fa-arrow-left"></i>
                 </div>
             {% endif %}
+            <ul class="navbar__menu">
+                {% for menu_item in menu_items %}
+                    <li><a href="{{ menu_item.link }}">{{ menu_item.title }}</a></li>
+                {% endfor %}
+            </ul>
             <div class="navbar__menu-btn navbar__menu-btn--closed">
                 <i class="fas fa-bars"></i>
             </div>

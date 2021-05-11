@@ -4,6 +4,12 @@
   color: $secondary-color;
   background: #0F6B2E;
   padding: 7px 10px;
+  border: none;
+
+  &.full-width {
+    width: 100%;
+    text-align: center;
+  }
 
   & > .decorator-right {
     position: absolute;

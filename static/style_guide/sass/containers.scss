@@ -1,0 +1,9 @@
+.box {
+  background: $secondary-color;
+  padding: 15px;
+
+  &__title {
+    @extend .medium;
+    margin: 0 0 15px;
+  }
+}

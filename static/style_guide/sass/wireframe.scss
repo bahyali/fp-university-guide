@@ -13,6 +13,11 @@ img {
   max-width: 100%;
 }
 
+a {
+  color: $primary-color;
+  text-decoration: none;
+}
+
 input[type='color'],
 input[type='date'],
 input[type='datetime'],
@@ -30,17 +35,17 @@ input:not([type]),
 textarea,
 select {
   -webkit-appearance: none;
-  background-color: $secondary-color;
-  border: 0.1rem solid $primary-color;
+  background-color: #FFF;
+  border: 0.1rem solid #929292;
   border-radius: 0;
   box-shadow: none;
   box-sizing: inherit;
-  height: 3.8rem;
+  height: 3rem;
   padding: .6rem 1.0rem .7rem;
   width: 100%;
 
   &:focus {
-    border-color: $secondary-color;
+    border-color: $primary-color;
     outline: 0;
   }
 }
@@ -94,4 +99,63 @@ input[type='radio'] {
   .container {
     max-width: 960px;
   }
+}
+
+
+.button,
+button,
+input[type='button'],
+input[type='reset'],
+input[type='submit'] {
+  background-color: $primary-color;
+  border: 0.1rem solid $primary-color;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.1rem;
+  font-weight: 500;
+  height: 2.5rem;
+  letter-spacing: .1rem;
+  padding: 0 3.0rem;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.button:focus, .button:hover,
+button:focus,
+button:hover,
+input[type='button']:focus,
+input[type='button']:hover,
+input[type='reset']:focus,
+input[type='reset']:hover,
+input[type='submit']:focus,
+input[type='submit']:hover {
+  background-color: darken($primary-color, 20%);
+  border-color: #606c76;
+  color: #fff;
+  outline: 0;
+}
+
+.button[disabled],
+button[disabled],
+input[type='button'][disabled],
+input[type='reset'][disabled],
+input[type='submit'][disabled] {
+  cursor: default;
+  opacity: .5;
+}
+
+.button[disabled]:focus, .button[disabled]:hover,
+button[disabled]:focus,
+button[disabled]:hover,
+input[type='button'][disabled]:focus,
+input[type='button'][disabled]:hover,
+input[type='reset'][disabled]:focus,
+input[type='reset'][disabled]:hover,
+input[type='submit'][disabled]:focus,
+input[type='submit'][disabled]:hover {
+  background-color: $primary-color;
+  border-color: $primary-color;
 }
