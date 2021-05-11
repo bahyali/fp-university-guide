@@ -3,8 +3,10 @@ from flask_assets import Bundle
 from markupsafe import escape
 from flask_login import login_user, login_required, logout_user, current_user
 from app import login_manager, assets
+from app.controllers.home import HomeController
 from app.models.user import User
-import app.models.university
+from app.models import university, blog, news
+
 from app.controllers.auth import SignupController, LoginController, ValidationException
 
 app = Blueprint('app', __name__)
@@ -33,7 +35,8 @@ STYLEGUIDE_DIR = 'views/style_guide'
 
 @app.route('/')
 def hello_world():
-    return render_template('%s/hello.html' % VIEWS_DIR)
+    payload = HomeController.index()
+    return render_template('%s/hello.html' % VIEWS_DIR, payload=payload)
 
 
 @app.route('/login')
