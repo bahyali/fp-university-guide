@@ -1,7 +1,7 @@
 {% extends "layouts/base.html" %}
 {% from 'components/navs.html' import navbar %}
 {% from 'components/containers.html' import box %}
-{% from 'components/form.html' import input %}
+{% from 'components/form.html' import input, flash_messages %}
 {% from 'components/buttons.html' import button %}
 {% from 'components/footer.html' import footer %}
 
@@ -22,11 +22,12 @@
     </div>
     <div class="container">
         {% call box(class="auth__box") %}
-            <form class="auth__form" method="post">
+            <form class="auth__form" method="post" action="/signup">
+                {{ flash_messages() }}
                 {{ input(placeholder="First name", name="first_name") }}
                 {{ input(placeholder="Last name", name="last_name") }}
 
-                {{ input(placeholder="Username", name="username") }}
+                {{ input(placeholder="Email", name="email", type="email") }}
                 {{ input(placeholder="Grade", name="grade") }}
 
                 {{ input(placeholder="Password", type="password", name="password") }}
@@ -36,7 +37,7 @@
             </form>
         {% endcall %}
         <div class="auth__bottom-note">
-            Don't have an account? <a href="/signup">Create one</a>
+            Already have an account? <a href="/login">Login</a>
         </div>
     </div>
 {% endblock %}
