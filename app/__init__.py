@@ -3,6 +3,9 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_assets import Environment, Bundle
+from dotenv import load_dotenv
+
+load_dotenv()  # take environment variables from .env.
 
 # init SQLAlchemy so we can use it later in our models
 db = SQLAlchemy()

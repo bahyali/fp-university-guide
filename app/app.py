@@ -1,12 +1,10 @@
 from flask import Blueprint, render_template, url_for, request, flash, redirect
-from markupsafe import escape
 from flask_assets import Bundle
-from dotenv import load_dotenv
-from app.models.user import User
+from markupsafe import escape
+from flask_login import login_user, login_required, logout_user, current_user
 from app import login_manager, assets
+from app.models.user import User
 from app.controllers.auth import SignupController, LoginController, ValidationException
-
-load_dotenv()  # take environment variables from .env.
 
 app = Blueprint('app', __name__)
 
@@ -39,15 +37,23 @@ def hello_world():
 
 @app.route('/login')
 def login():
+    if current_user.is_authenticated:
+        return redirect('/')
+
     return render_template('%s/login.html' % VIEWS_DIR)
 
 
 @app.route('/login', methods=['POST'])
 def authenticate():
+    if current_user.is_authenticated:
+        return redirect('/')
+
     controller = LoginController(request.form)
 
     try:
-        if controller.login():
+        user = controller.login()
+        if user:
+            login_user(user)
             return redirect('/')
 
     except ValidationException as e:
@@ -55,21 +61,37 @@ def authenticate():
         return redirect(url_for('app.login'))  # if the user doesn't exist or password is wrong, reload the page
 
 
+@app.route('/logout')
+def logout():
+    if current_user.is_authenticated:
+        logout_user()
+        return redirect('/')
+
+
 @app.route('/signup', methods=['GET'])
 def signup():
+    if current_user.is_authenticated:
+        return redirect('/')
+
     return render_template('%s/signup.html' % VIEWS_DIR)
 
 
 @app.route('/signup', methods=['POST'])
 def register():
+    if current_user.is_authenticated:
+        return redirect('/')
+
     controller = SignupController(request.form)
 
     try:
         controller.register()
     except ValidationException as e:
         flash(str(e))
+        redirect(url_for('app.signup'))
 
-    return render_template('%s/signup.html' % VIEWS_DIR)
+    flash('You are now registered, please login!')
+
+    return redirect(url_for('app.login'))
 
 
 @app.route('/style_guide')

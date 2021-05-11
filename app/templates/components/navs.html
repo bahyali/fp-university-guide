@@ -9,7 +9,7 @@
         <div class="navbar__container">
             {% if show_logo %}
                 <div class="navbar__logo">
-                    <img src="{{ url_for('static', filename='images/logo.png') }}">
+                    <a href="/"><img src="{{ url_for('static', filename='images/logo.png') }}"></a>
                 </div>
             {% else %}
                 <div class="navbar__back-btn navbar__back-btn--closed">
@@ -18,7 +18,11 @@
             {% endif %}
             <ul class="navbar__menu">
                 {% for menu_item in menu_items %}
-                    <li><a href="{{ menu_item.link }}">{{ menu_item.title }}</a></li>
+                    {% if menu_item.title == 'Login' and current_user.is_authenticated %}
+                        <li><a href="/logout">Logout</a></li>
+                    {% else %}
+                        <li><a href="{{ menu_item.link }}">{{ menu_item.title }}</a></li>
+                    {% endif %}
                 {% endfor %}
             </ul>
             <div class="navbar__menu-btn navbar__menu-btn--closed">
