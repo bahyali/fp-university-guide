@@ -4,7 +4,7 @@ from app.models.user import User
 from werkzeug.security import generate_password_hash
 
 
-class DemoSeeder(Seeder):
+class UserSeeder(Seeder):
 
     # run() will be called by Flask-Seeder
     def run(self):

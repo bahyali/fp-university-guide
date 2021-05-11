@@ -9,11 +9,12 @@ class University(db.Model):
     type = db.Column(db.String(100), nullable=False)
     logo = db.Column(db.String(255))
     location = db.Column(db.String(100))
+    about = db.Column(db.Text())
 
-    programs = db.relationship('Program', backref=db.backref('universities', lazy=True))
-    scholarships = db.relationship('Scholarship', backref=db.backref('universities', lazy=True))
-    campuses = db.relationship('Campus', backref=db.backref('universities', lazy=True))
-    contact_info = db.relationship('ContactInfo', backref=db.backref('universities', lazy=True))
+    programs = db.relationship('Program', backref=db.backref('university', lazy=True))
+    scholarships = db.relationship('Scholarship', backref=db.backref('university', lazy=True))
+    campuses = db.relationship('Campus', backref=db.backref('university', lazy=True))
+    contact_info = db.relationship('ContactInfo', backref=db.backref('university', lazy=True))
 
     created_date = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
