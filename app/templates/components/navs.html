@@ -2,9 +2,8 @@
                             {'title':'Home', 'link':'/'},
                             {'title':'Universities', 'link':'/universities'},
                             {'title':'Contact us', 'link':'/contact-us'},
-                            {'title':'Login', 'link':'/login'},
-
-], show_logo=True, color=None) %}
+                           ],
+                           show_logo=True, color=None) %}
     <div class="navbar" style="{{ 'background-color:%s' % color if color is not none }}">
         <div class="navbar__container">
             {% if show_logo %}
@@ -18,13 +17,20 @@
             {% endif %}
             <ul class="navbar__menu">
                 {% for menu_item in menu_items %}
-                    {% if menu_item.title == 'Login' and current_user.is_authenticated %}
-                        <li><a href="/logout">Logout</a></li>
-                    {% else %}
-                        <li><a href="{{ menu_item.link }}">{{ menu_item.title }}</a></li>
-                    {% endif %}
+                    <li><a href="{{ menu_item.link }}">{{ menu_item.title }}</a></li>
                 {% endfor %}
             </ul>
+            <div class="navbar__auth">
+                {% if current_user.is_authenticated %}
+                    <div>
+                        <span class="navbar__auth__greeting">Hello! {{ '%s %s' % (current_user.first_name, current_user.last_name) }}</span>
+                        <a class="btn" href="/logout">Logout</a>
+                    </div>
+                {% else %}
+                    <div><a class="btn" href="/login">Login</a></div>
+
+                {% endif %}
+            </div>
             <div class="navbar__menu-btn navbar__menu-btn--closed">
                 <i class="fas fa-bars"></i>
             </div>
