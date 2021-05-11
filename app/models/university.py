@@ -26,7 +26,7 @@ class Program(db.Model):
     name = db.Column(db.String(100), nullable=False)
     type = db.Column(db.String(100), nullable=False)
     about = db.Column(db.Text())
-    tuition = db.relationship('Tuition', backref=db.backref('Program', lazy=True))
+    # tuition = db.relationship('Tuition', backref=db.backref('Program', lazy=True))
 
     created_date = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
@@ -34,7 +34,7 @@ class Program(db.Model):
 
 class Scholarship(db.Model):
     id = db.Column(db.Integer, primary_key=True)  # primary keys are required by SQLAlchemy
-    program_id = db.Column(db.Integer, db.ForeignKey('program.id'), nullable=False)
+    university_id = db.Column(db.Integer, db.ForeignKey('university.id'), nullable=False)
 
     name = db.Column(db.String(100), nullable=False)
     type = db.Column(db.String(100), nullable=False)

@@ -15,6 +15,7 @@ class SignupController:
 
         user: User = User(password=generate_password_hash(self.user_data['password'], method='sha256'),
                           email=self.user_data['email'],
+                          grade=self.user_data['grade'],
                           first_name=self.user_data['first_name'],
                           last_name=self.user_data['last_name'])
         # add the new user to the database
