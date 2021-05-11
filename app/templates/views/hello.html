@@ -14,8 +14,8 @@
     <div class="homepage-header">
         <div class="homepage-header__container">
             <div class="homepage-header__hero">
-                <h4>Lorem Ipsum dolor</h4>
-                <span>Lorem ipsum dolor amit</span>
+                <h4>Welcome to The University Guide!</h4>
+                <span>Your way to succeed!</span>
             </div>
             <div class="homepage-header__search-box">{{ search_box() }}</div>
             <div class="homepage-header__personality-test">
@@ -34,9 +34,9 @@
 {% block body %}
     <div class="featured-universities vertical-slider">
         <div class="vertical-slider__container">
-            {% for university in ['German University in Cairo', 'B', 'C', 'D'] %}
+            {% for university in payload.featured_universities %}
                 <div class="slider-item">
-                    {{ university_card(title=university) }}
+                    {{ university_card(title=university.name) }}
                 </div>
             {% endfor %}
         </div>
