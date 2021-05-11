@@ -51,6 +51,7 @@ class Campus(db.Model):
 
     name = db.Column(db.String(100), nullable=False)
     location = db.Column(db.String(100), nullable=False)
+    address = db.Column(db.String(255), nullable=True)
 
     facilities = db.relationship('Facility', backref=db.backref('Campus', lazy=True))
 

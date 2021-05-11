@@ -1,5 +1,6 @@
 {% extends "layouts/base.html" %}
 {% from 'components/navs.html' import navbar with context %}
+{% from 'components/cards.html' import university_card %}
 {% from 'components/footer.html' import footer %}
 
 {% set page_title = "Universities" %}
@@ -10,5 +11,13 @@
 {% endblock %}
 
 {% block body %}
-
+    <div class="container">
+        <div class="page-universities-list__grid">
+            {% for university in payload.universities %}
+                <div class="slider-item">
+                    {{ university_card(title=university.name, image_path=university.logo) }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

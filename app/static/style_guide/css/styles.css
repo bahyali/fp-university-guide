@@ -606,6 +606,31 @@ input {
   }
 }
 
+.auth {
+  padding-bottom: 100px;
+}
+.auth__header {
+  margin-top: 20px;
+  text-align: center;
+}
+.auth__header__logo {
+  display: inline-block;
+}
+.auth__header h4 {
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+.auth__box {
+  margin: 38px auto;
+  max-width: 500px;
+}
+.auth__form .input {
+  margin-bottom: 15px;
+}
+.auth__bottom-note {
+  text-align: center;
+}
+
 .page-home .homepage-header {
   background: #20BF55;
   color: #FCF7F8;
@@ -668,29 +693,16 @@ input {
   padding-inline-start: 15px;
 }
 
-.auth {
-  padding-bottom: 100px;
+.page-universities-list__grid {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
 }
-.auth__header {
-  margin-top: 20px;
-  text-align: center;
-}
-.auth__header__logo {
-  display: inline-block;
-}
-.auth__header h4 {
-  margin-top: 20px;
-  margin-bottom: 0;
-}
-.auth__box {
-  margin: 38px auto;
-  max-width: 500px;
-}
-.auth__form .input {
-  margin-bottom: 15px;
-}
-.auth__bottom-note {
-  text-align: center;
+.page-universities-list__grid > div {
+  width: calc(25% - 5px);
+  margin-bottom: 5px;
+  margin-left: 5px;
+  flex: 1 1 auto;
 }
 
 .padded-sides-only {

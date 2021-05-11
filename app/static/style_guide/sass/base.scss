@@ -21,9 +21,11 @@ body {
 @import "footer";
 @import "utilities";
 
-@import "page-home";
 @import "auth";
+@import "page-home";
 @import "page-login";
+@import "page-universities";
+
 
 // Helpers
 .padded-sides-only {

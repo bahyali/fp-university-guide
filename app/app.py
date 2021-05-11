@@ -4,6 +4,7 @@ from markupsafe import escape
 from flask_login import login_user, login_required, logout_user, current_user
 from app import login_manager, assets
 from app.controllers.home import HomeController
+from app.controllers.university import UniversityController
 from app.models.user import User
 from app.models import university, blog, news
 
@@ -100,7 +101,7 @@ def register():
 
 @app.route('/contact-us')
 def show_contact():
-    return 'Contact us'
+    return render_template('%s/contact-us.html' % VIEWS_DIR)
 
 
 @app.route('/style_guide')
@@ -125,7 +126,9 @@ def show_post(post_id):
 
 @app.route('/universities')
 def show_universities():
-    return 'University'
+    controller = UniversityController()
+    payload = controller.index()
+    return render_template('%s/universities.html' % VIEWS_DIR, payload=payload)
 
 
 @app.route('/university/<int:uni_id>')
@@ -151,4 +154,3 @@ def show_programs():
 @app.route('/program/<int:program_id>')
 def show_program(program_id):
     return 'Program %d' % program_id
-

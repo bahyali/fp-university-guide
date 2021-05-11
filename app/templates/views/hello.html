@@ -36,7 +36,7 @@
         <div class="vertical-slider__container">
             {% for university in payload.featured_universities %}
                 <div class="slider-item">
-                    {{ university_card(title=university.name) }}
+                    {{ university_card(title=university.name, image_path=university.logo) }}
                 </div>
             {% endfor %}
         </div>
@@ -46,9 +46,9 @@
             {{ section_header('Latest News') }}
         </div>
         <div class="news__items row">
-            {% for article in ['A', 'B', 'C', 'D'] %}
+            {% for article in payload.latest_news_items %}
                 <div class="news__item column">
-                    {{ news_item() }}
+                    {{ news_item(title=article.title, description=article.excerpt, image_path=article.image) }}
                 </div>
             {% endfor %}
         </div>
@@ -61,9 +61,9 @@
         </div>
         <div class="blog-posts__posts vertical-slider">
             <div class="vertical-slider__container">
-                {% for university in ['German University in Cairo', 'B', 'C', 'D'] %}
+                {% for blog_post in payload.featured_blog_posts %}
                     <div class="slider-item">
-                        {{ university_card(title=university) }}
+                        {{ university_card(title=blog_post.title, image_path=blog_post.image) }}
                     </div>
                 {% endfor %}
             </div>
