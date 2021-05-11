@@ -9,7 +9,6 @@ class University(db.Model):
     type = db.Column(db.String(100), nullable=False)
     logo = db.Column(db.String(255))
     location = db.Column(db.String(100))
-    locations = db.Column(db.String(100))
 
     programs = db.relationship('Program', backref=db.backref('universities', lazy=True))
     scholarships = db.relationship('Scholarship', backref=db.backref('universities', lazy=True))
