@@ -1,6 +1,7 @@
 from app import db
 from app.models.user import User
 from werkzeug.security import generate_password_hash, check_password_hash
+from app.utilities.exceptions import ValidationException
 
 
 class SignupController:
@@ -52,6 +53,3 @@ class LoginController:
 
         return user
 
-
-class ValidationException(Exception):
-    pass

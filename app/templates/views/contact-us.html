@@ -1,5 +1,8 @@
 {% extends "layouts/base.html" %}
 {% from 'components/navs.html' import navbar with context %}
+{% from 'components/form.html' import input, textarea, flash_messages %}
+{% from 'components/containers.html' import box %}
+{% from 'components/buttons.html' import button %}
 {% from 'components/footer.html' import footer %}
 
 {% set page_title = "Contact Us" %}
@@ -10,5 +13,33 @@
 {% endblock %}
 
 {% block body %}
+    <div class="auth__header container">
+        <div class="auth__header__logo">
+            <img src="{{ url_for('static', filename="images/logo-round.png") }}" alt="University Guide Logo">
+        </div>
+        <h4>Contact Us</h4>
+        <p>We'd love to hear from you!</p>
+    </div>
+    {% if form_status == 'success' %}
+        <div class="container">
+            {% call box(class="auth__box") %}
+                <p>Thank you for reaching out to us. Your message is well received.</p>
+            {% endcall %}
+        </div>
+    {% else %}
+        <div class="container">
+            {% call box(class="auth__box") %}
+                <form class="auth__form" method="post" action="/contact-us">
+                    {{ flash_messages() }}
+                    {{ input(placeholder="Your name", name="name") }}
 
+                    {{ input(placeholder="Your Email", name="email", type="email") }}
+                    {{ textarea(placeholder="Your message", name="message") }}
+
+
+                    {{ button(text="Send Message", class="btn full-width", type="submit") }}
+                </form>
+            {% endcall %}
+        </div>
+    {% endif %}
 {% endblock %}

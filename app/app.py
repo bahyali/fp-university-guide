@@ -5,9 +5,9 @@ from flask_login import login_user, login_required, logout_user, current_user
 from app import login_manager, assets
 from app.controllers.home import HomeController
 from app.controllers.university import UniversityController
+from app.controllers.contact_us import ContactUsController
 from app.models.user import User
-import simplejson as json
-from app.models import university, blog, news
+from app.models import university, blog, news, contact_item
 
 from app.controllers.auth import SignupController, LoginController, ValidationException
 
@@ -101,8 +101,22 @@ def register():
 
 
 @app.route('/contact-us')
-def show_contact():
-    return render_template('%s/contact-us.html' % VIEWS_DIR)
+def show_contact_form():
+    return render_template('%s/contact-us.html' % VIEWS_DIR, form_status='fresh')
+
+
+@app.route('/contact-us', methods=['POST'])
+def receive_contact_message():
+    controller = ContactUsController(request.form)
+    try:
+        controller.add_contact_item()
+        form_status = 'success'
+
+    except ValidationException as e:
+        flash(str(e))
+        form_status = 'error'
+
+    return render_template('%s/contact-us.html' % VIEWS_DIR, form_status=form_status)
 
 
 @app.route('/style_guide')
