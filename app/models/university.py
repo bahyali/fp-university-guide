@@ -1,4 +1,4 @@
-from app import db
+from app import db, ma
 from datetime import datetime
 
 
@@ -18,6 +18,7 @@ class University(db.Model):
 
     created_date = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
 
 
 class Program(db.Model):
@@ -79,3 +80,8 @@ class ContactInfo(db.Model):
 
     created_date = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+
+class UniversitySchema(ma.SQLAlchemyAutoSchema):
+    class Meta:
+        model = University

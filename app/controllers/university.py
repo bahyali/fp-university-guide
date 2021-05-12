@@ -1,6 +1,4 @@
-from app.models.university import University
-from app.models.blog import BlogItem
-from app.models.news import NewsItem
+from app.models.university import University, UniversitySchema
 
 
 class UniversityController:
@@ -9,3 +7,13 @@ class UniversityController:
         return {
             'universities': University.query.order_by(University.name.asc()).all(),
         }
+
+    @staticmethod
+    def search_api(query):
+        raw = University.query.where(University.name.ilike('%s%%' % query)).all()
+        schema = UniversitySchema(many=True, only=['name', 'logo'])
+        return schema.jsonify(raw)
+
+    @staticmethod
+    def search(query):
+        return University.query.where(University.name.ilike('%%%s%%' % query)).all()

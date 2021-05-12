@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, url_for, request, flash, redirect
+from flask import Blueprint, render_template, url_for, request, flash, redirect, jsonify
 from flask_assets import Bundle
 from markupsafe import escape
 from flask_login import login_user, login_required, logout_user, current_user
@@ -6,6 +6,7 @@ from app import login_manager, assets
 from app.controllers.home import HomeController
 from app.controllers.university import UniversityController
 from app.models.user import User
+import simplejson as json
 from app.models import university, blog, news
 
 from app.controllers.auth import SignupController, LoginController, ValidationException
@@ -154,3 +155,16 @@ def show_programs():
 @app.route('/program/<int:program_id>')
 def show_program(program_id):
     return 'Program %d' % program_id
+
+
+# Api
+@app.route('/api/search')
+def show_search_api():
+    query = request.args['query']
+    controller = UniversityController()
+
+    if len(query) < 2:
+        return "[]"
+
+    results = controller.search_api(request.args['query'])
+    return results

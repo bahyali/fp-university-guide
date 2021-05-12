@@ -1,7 +1,9 @@
 import os
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_marshmallow import Marshmallow
 
 from flask_login import LoginManager
 from flask_assets import Environment
@@ -17,7 +19,7 @@ seeder = FlaskSeeder()
 migrate = Migrate()
 
 login_manager = LoginManager()
-
+ma = Marshmallow()
 assets = Environment()
 
 
@@ -27,12 +29,17 @@ def create_app():
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL') \
         .replace('postgres://', 'postgresql://')
 
-    app.config['SECRET_KEY'] = 'secret-key-goes-here'
+    app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+
+    # Stop caching static files in dev
+    if os.environ.get('FLASK_ENV') == 'development':
+        app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
     # Database stuff
     db.init_app(app)
     migrate.init_app(app, db)
     seeder.init_app(app, db)
+    ma.init_app(app)
 
     # Authenticator
     login_manager.login_view = 'app.login'
