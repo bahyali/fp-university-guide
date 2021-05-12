@@ -3,6 +3,8 @@ input {
 }
 
 .search-box {
+  $self: &;
+
   position: relative;
 
   &__search-btn {
@@ -15,9 +17,33 @@ input {
     }
   }
 
+  &__search-results {
+    display: none;
+    background: $secondary-color;
+    color: #484848;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #20bf55;
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+
+    & > li {
+      padding: 9px 15px;
+      border-bottom: 1px solid #c3c3c3;
+    }
+  }
+
   & > &__input {
     background: $secondary-color;
     width: 100%;
     height: 55px;
+
+    &:focus {
+      ~ .search-box__search-results {
+        display: block;
+      }
+    }
   }
 }
