@@ -5,7 +5,7 @@ from app import create_app, db
 @pytest.fixture
 def app():
     app = create_app(
-        {'TESTING': True, 'SQLALCHEMY_DATABASE_URI': 'postgresql://postgres:mysecretpassword@localhost/postgres'})
+        {'TESTING': True, 'SQLALCHEMY_DATABASE_URI': 'sqlite://'})
 
     """ Migrate database"""
     with app.app_context():
