@@ -35,6 +35,14 @@ STYLEGUIDE_DIR = 'views/style_guide'
 
 # Routes
 
+def redirect_if_authenticated(func):
+    def inner():
+        if current_user.is_authenticated:
+            return redirect('/')
+        func()
+    return inner
+
+
 @app.route('/')
 def hello_world():
     payload = HomeController.index()
@@ -42,10 +50,8 @@ def hello_world():
 
 
 @app.route('/login')
+@redirect_if_authenticated
 def login():
-    if current_user.is_authenticated:
-        return redirect('/')
-
     return render_template('%s/login.html' % VIEWS_DIR)
 
 
@@ -82,11 +88,12 @@ def signup():
     return render_template('%s/signup.html' % VIEWS_DIR)
 
 
+# use middleware
 @app.route('/signup', methods=['POST'])
 def register():
     if current_user.is_authenticated:
         return redirect('/')
-
+    # redirect if not authenticated
     controller = SignupController(request.form)
 
     try:
