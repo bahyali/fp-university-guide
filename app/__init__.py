@@ -23,8 +23,10 @@ ma = Marshmallow()
 assets = Environment()
 
 
-def create_app():
+def create_app(test_config=None):
     app = Flask(__name__)
+
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL') \
         .replace('postgres://', 'postgresql://')
@@ -34,6 +36,9 @@ def create_app():
     # Stop caching static files in dev
     if os.environ.get('FLASK_ENV') == 'development':
         app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+
+    if test_config:
+        app.config.update(test_config)
 
     # Database stuff
     db.init_app(app)
