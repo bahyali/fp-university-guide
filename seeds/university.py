@@ -30,9 +30,12 @@ class UniversitySeeder(Seeder):
 
     def add_campus(self, uni):
         for campus in campus_factory.create(random.randint(1, 5)):
-            for facility in facility_factory.create(random.randint(1, 5)):
-                campus.facilities.append(facility)
+            self.add_facility(campus)
             uni.campuses.append(campus)
+
+    def add_facility(self, campus):
+        for facility in facility_factory.create(random.randint(1, 5)):
+            campus.facilities.append(facility)
 
     def add_scholarship(self, uni):
         for scholarship in scholarship_factory.create(random.randint(1, 5)):
