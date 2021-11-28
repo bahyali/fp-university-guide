@@ -39,7 +39,7 @@ class LoginController:
         self.credentials = credentials
         pass
 
-    def login(self):
+    def check_credentials(self):
         email = self.credentials.get('email')
         password = self.credentials.get('password')
 

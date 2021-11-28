@@ -54,7 +54,7 @@ def authenticate():
     controller = LoginController(request.form)
 
     try:
-        user = controller.login()
+        user = controller.check_credentials()
 
     except ValidationException as e:
         flash(str(e))
