@@ -43,13 +43,13 @@ def test_invalid_email():
 
 
 def test_valid_input():
-    bad_payload = {
+    payload = {
         "name": "Bahy",
         "email": 'bahy@code.berlin',
         "message": 'Good Message'
     }
 
-    con = ContactUsController(bad_payload)
+    con = ContactUsController(payload)
 
     try:
         con.validate()
