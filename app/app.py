@@ -55,13 +55,14 @@ def authenticate():
 
     try:
         user = controller.login()
-        if user:
-            login_user(user)
-            return redirect('/')
 
     except ValidationException as e:
         flash(str(e))
         return redirect(url_for('app.login'))
+
+    if user:
+        login_user(user)
+        return redirect('/')
 
 
 @app.route('/logout')
@@ -77,7 +78,6 @@ def signup():
     return render_template('%s/signup.html' % VIEWS_DIR)
 
 
-# use middleware
 @app.route('/signup', methods=['POST'])
 @redirect_if_authenticated
 def register():
