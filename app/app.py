@@ -9,8 +9,8 @@ from app.controllers.contact_us import ContactUsController
 from app.models.user import User
 from app.models import university, blog, news, contact_item
 from app.controllers.auth import SignupController, LoginController, ValidationException
-
 from app.utilities.auth import redirect_if_authenticated
+
 app = Blueprint('app', __name__)
 
 
@@ -34,7 +34,7 @@ STYLEGUIDE_DIR = 'views/style_guide'
 
 
 @app.route('/')
-def hello_world():
+def index():
     payload = HomeController.index()
     return render_template('%s/hello.html' % VIEWS_DIR, payload=payload)
 
