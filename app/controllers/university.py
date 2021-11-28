@@ -10,10 +10,11 @@ class UniversityController:
 
     @staticmethod
     def search_api(query):
-        raw = University.query.where(University.name.ilike('%s%%' % query)).all()
+        raw = UniversityController.search(query)
+
         schema = UniversitySchema(many=True, only=['name', 'logo'])
         return schema.jsonify(raw)
 
     @staticmethod
     def search(query):
-        return University.query.where(University.name.ilike('%%%s%%' % query)).all()
+        return University.query.where(University.name.ilike('%s%%' % query)).all()
