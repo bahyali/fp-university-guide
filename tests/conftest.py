@@ -2,10 +2,20 @@ import pytest
 from app import create_app, db
 
 
-@pytest.fixture
+def determine_scope(fixture_name, config):
+    if config.getoption("--driver", "Chrome"):
+        return "session"
+    return "function"
+
+
+@pytest.fixture(scope=determine_scope)
 def app():
     app = create_app(
-        {'TESTING': True, 'SQLALCHEMY_DATABASE_URI': 'sqlite://'})
+        {
+            'TESTING': True,
+            'SQLALCHEMY_DATABASE_URI': 'sqlite:///temp.db'
+        }
+    )
 
     """ Migrate database"""
     with app.app_context():
