@@ -19,14 +19,17 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
-# Website
-website_scss = Bundle('sass/base.scss', depends='sass/**/*.scss', filters='scss', output='css/styles.css')
-assets.register('scss_all', website_scss)
+def bundle_scss():
+    # Website
+    website_scss = Bundle('sass/base.scss', depends='sass/**/*.scss', filters='scss', output='css/styles.css')
+    assets.register('scss_all', website_scss)
+    # Style Guide
+    style_guide_scss = Bundle('style_guide/sass/base.scss', depends='style_guide/sass/*.scss', filters='scss',
+                              output='style_guide/css/styles.css')
+    assets.register('sg_scss_all', style_guide_scss)
 
-# Style Guide
-style_guide_scss = Bundle('style_guide/sass/base.scss', depends='style_guide/sass/*.scss', filters='scss',
-                          output='style_guide/css/styles.css')
-assets.register('sg_scss_all', style_guide_scss)
+
+bundle_scss()
 
 # Constants
 VIEWS_DIR = 'views'
