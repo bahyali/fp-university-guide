@@ -39,7 +39,7 @@ def test_logout(app, client):
     assert b"Login" in rv.data
 
 
-# ------------- auth utilities
+# ------------- helpers ------------ #
 
 
 def login(client, email, password):
