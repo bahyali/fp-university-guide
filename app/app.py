@@ -8,9 +8,9 @@ from app.controllers.university import UniversityController
 from app.controllers.contact_us import ContactUsController
 from app.models.user import User
 from app.models import university, blog, news, contact_item
-from functools import wraps
 from app.controllers.auth import SignupController, LoginController, ValidationException
 
+from app.utilities.auth import redirect_if_authenticated
 app = Blueprint('app', __name__)
 
 
@@ -31,17 +31,6 @@ assets.register('sg_scss_all', style_guide_scss)
 # Constants
 VIEWS_DIR = 'views'
 STYLEGUIDE_DIR = 'views/style_guide'
-
-
-# Routes
-
-def redirect_if_authenticated(func):
-    @wraps(func)
-    def _inner(*args, **kwargs):
-        if current_user.is_authenticated:
-            return redirect('/')
-        return func(*args, **kwargs)
-    return _inner
 
 
 @app.route('/')
@@ -89,7 +78,6 @@ def signup():
 @app.route('/signup', methods=['POST'])
 @redirect_if_authenticated
 def register():
-    # redirect if not authenticated
     controller = SignupController(request.form)
 
     try:
