@@ -8,7 +8,7 @@ from app.controllers.university import UniversityController
 from app.controllers.contact_us import ContactUsController
 from app.models.user import User
 from app.models import university, blog, news, contact_item
-
+from functools import wraps
 from app.controllers.auth import SignupController, LoginController, ValidationException
 
 app = Blueprint('app', __name__)
@@ -36,11 +36,12 @@ STYLEGUIDE_DIR = 'views/style_guide'
 # Routes
 
 def redirect_if_authenticated(func):
-    def inner():
+    @wraps(func)
+    def _inner(*args, **kwargs):
         if current_user.is_authenticated:
             return redirect('/')
-        func()
-    return inner
+        return func(*args, **kwargs)
+    return _inner
 
 
 @app.route('/')
@@ -56,10 +57,8 @@ def login():
 
 
 @app.route('/login', methods=['POST'])
+@redirect_if_authenticated
 def authenticate():
-    if current_user.is_authenticated:
-        return redirect('/')
-
     controller = LoginController(request.form)
 
     try:
@@ -81,18 +80,15 @@ def logout():
 
 
 @app.route('/signup', methods=['GET'])
+@redirect_if_authenticated
 def signup():
-    if current_user.is_authenticated:
-        return redirect('/')
-
     return render_template('%s/signup.html' % VIEWS_DIR)
 
 
 # use middleware
 @app.route('/signup', methods=['POST'])
+@redirect_if_authenticated
 def register():
-    if current_user.is_authenticated:
-        return redirect('/')
     # redirect if not authenticated
     controller = SignupController(request.form)
 
