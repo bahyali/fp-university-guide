@@ -12,19 +12,32 @@ class UniversitySeeder(Seeder):
     def run(self):
 
         for uni in university_factory.create(5):
-            for program in program_factory.create(random.randint(1, 5)):
-                uni.programs.append(program)
+            self.add_program(uni)
 
-            for scholarship in scholarship_factory.create(random.randint(1, 5)):
-                uni.scholarships.append(scholarship)
+            self.add_scholarship(uni)
 
-            for campus in campus_factory.create(random.randint(1, 5)):
-                for facility in facility_factory.create(random.randint(1, 5)):
-                    campus.facilities.append(facility)
-                uni.campuses.append(campus)
+            self.add_campus(uni)
 
-            for contact_info in contact_info_factory.create(random.randint(1, 5)):
-                uni.contact_info.append(contact_info)
+            self.add_contact_info(uni)
 
             print("Adding University: %s" % uni)
+
             self.db.session.add(uni)
+
+    def add_contact_info(self, uni):
+        for contact_info in contact_info_factory.create(random.randint(1, 5)):
+            uni.contact_info.append(contact_info)
+
+    def add_campus(self, uni):
+        for campus in campus_factory.create(random.randint(1, 5)):
+            for facility in facility_factory.create(random.randint(1, 5)):
+                campus.facilities.append(facility)
+            uni.campuses.append(campus)
+
+    def add_scholarship(self, uni):
+        for scholarship in scholarship_factory.create(random.randint(1, 5)):
+            uni.scholarships.append(scholarship)
+
+    def add_program(self, uni):
+        for program in program_factory.create(random.randint(1, 5)):
+            uni.programs.append(program)
