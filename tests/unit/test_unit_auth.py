@@ -19,7 +19,7 @@ def test_check_credentials_valid(mocker):
                                                 password=generate_password_hash(payload['password']))
     try:
         con.check_credentials()
-    except:
+    except ValidationException:
         assert False, f'Raised an exception'
 
 
@@ -33,6 +33,36 @@ def test_check_credentials_wrong_password(mocker):
     mock_model = mocker.patch('app.controllers.auth.User')
     mock_model.query.filter_by \
         .return_value.first.return_value = User(email=payload['email'],
+                                                password=generate_password_hash('123'))
+    with raises(ValidationException):
+        con.check_credentials()
+
+
+def test_check_credentials_wrong_email(mocker):
+    payload = {
+        'email': 'bahy@test.com',
+        'password': '123456'
+    }
+
+    con = LoginController(payload)
+    mock_model = mocker.patch('app.controllers.auth.User')
+    mock_model.query.filter_by \
+        .return_value.first.return_value = User(email='bahy2@test.com',
+                                                password=generate_password_hash(payload['password']))
+    with raises(ValidationException):
+        con.check_credentials()
+
+
+def test_check_credentials_both_wrong(mocker):
+    payload = {
+        'email': 'bahy@test.com',
+        'password': '123456'
+    }
+
+    con = LoginController(payload)
+    mock_model = mocker.patch('app.controllers.auth.User')
+    mock_model.query.filter_by \
+        .return_value.first.return_value = User(email='bahy2@test.com',
                                                 password=generate_password_hash('123'))
     with raises(ValidationException):
         con.check_credentials()
