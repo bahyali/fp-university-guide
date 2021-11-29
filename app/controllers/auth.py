@@ -46,7 +46,7 @@ class LoginController:
         user = User.query.filter_by(email=email).first()
 
         # check if the user actually exists
-        # take the user-supplied password, hash it, and compare it to the hashed password in the database
+        # take the user-supplied password, and compare it to the hashed password in the database
         if not user or not check_password_hash(user.password, password):
             raise ValidationException('Please check your login details and try again')
         pass
