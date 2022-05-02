@@ -25,7 +25,8 @@ A page that allows user to register.
 #### 5. Login
 A page that allows user to login.
 
-
+### ERD
+![ERD diagram](d8ij9vvh0jintk.png)
 
 > The website is seeded with dummy data and lots of kitties because I don't have actual data yet, but you can test the search by looking for CODE.
 
