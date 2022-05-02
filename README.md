@@ -2,8 +2,10 @@ University Guide
 ===
 ### Project Description
 This website should serve as a university guide for students looking to get a higher education to find the suitable university for their situation.
+### URL
+https://university-guide-fp.herokuapp.com/
 
-### Pages:
+### Pages
 #### 1. Homepage
 The main landing page.
 
