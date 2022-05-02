@@ -25,6 +25,11 @@ A page that allows user to register.
 #### 5. Login
 A page that allows user to login.
 
+#### To do list:
+[] Build single university page 
+
+[] Add pagination to universities page
+
 ### ERD
 ![ERD diagram](d8ij9vvh0jintk.png)
 
